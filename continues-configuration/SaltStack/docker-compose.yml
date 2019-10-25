@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+
+  salt-master:
+    build: ./master
+    expose:
+     - "4505"
+     - "4506"
+    ports:
+     - "8000:8000"
+
+  salt-minion:
+    build: ./minion
+    expose:
+      - "4505"
+      - "4506"
+    depends_on:
+      - salt-master
+    links: 
+      - salt-master
