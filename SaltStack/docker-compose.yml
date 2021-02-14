@@ -3,12 +3,15 @@ version: '3.7'
 services:
 
   salt-master:
+
     build: ./master
+    container_name: salt-master
     expose:
      - "4505"
      - "4506"
-    ports:
-     - "8000:8000"
+    volumes:
+     - "./formulas:/srv/salt"
+
 
   salt-minion:
     build: ./minion
